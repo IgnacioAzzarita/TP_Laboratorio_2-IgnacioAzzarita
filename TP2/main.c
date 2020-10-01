@@ -15,15 +15,20 @@ typedef struct
 int initEmployees(Employee* arrayEmployee ,int len);
 int addEmployee(Employee*arrayEmployee,int len,int id,char name[],char lastName[],float salary,int sector);
 int printEmployess(Employee*arrayEmployee,int len);
+int findEmployeebyId(Employee*arrayEmployee,int len,int id);
+int sortEmployees(Employee* arrayEmployee, int len, int order);
 int main()
 {
     Employee arrayEmployee[TAM];
+
     initEmployees(arrayEmployee,TAM);
     addEmployee(arrayEmployee,TAM,1,"Jose","Marmol",2564.8,2);
+    findEmployeebyId(arrayEmployee*,TAM,arrayEmployee.id);
     printEmployess(arrayEmployee,TAM);
+
     return 0;
 }
-int initEmployees(Employee* arrayEmployee ,int len)
+int initEmployees(Employee*arrayEmployee ,int len)
 {
     int i;
     if(arrayEmployee != NULL && len > 0 && len <= 1000){
@@ -78,6 +83,75 @@ int printEmployess(Employee*arrayEmployee,int len)
         return 0;
     }
     return -1;
+}
+int findEmployeebyId(Employee*arrayEmployee,int len, int id)
+{
+    int indexId = -1;
+    if(len > 0 && len <= 1000)
+    {
+    for(int i = 0; i < len; i++)
+    {
+      if(arrayEmployee[i].id == id && arrayEmployee[i].isEmpty == 0)
+        {
+                indexId = i;
+                break;
+        }
+    }
+}
+    return indexId;
+}
+int sortEmployees(Employee* arrayEmployee, int len, int order)
+{
+    if(arrayEmployee == NULL || len < 0 || len > 1000 || order < 0 || order > 1 )
+    {
+        return -1;
+    }
+
+    Employee aux;
+    if(order == 1)
+    {
+        for(int i = 0; i < len - 1; i++)
+        {
+            for(int j = i + 1; j < len; j++)
+            {
+                if(arrayEmployee[i].sector > arrayEmployee[j].sector)  // Ordenar alfabeticamente por apellido && sector
+                {
+                    aux = arrayEmployee[i];
+                    arrayEmployee[i] = arrayEmployee[j];
+                    arrayEmployee[j] = aux;
+                }
+                else if (arrayEmployee[i].sector == arrayEmployee[j].sector && strcmp(arrayEmployee[i].lastName, arrayEmployee[j].lastName) > 0)
+                {
+                    aux = arrayEmployee[i];
+                    arrayEmployee[i] = arrayEmployee[j];
+                    arrayEmployee[j] = aux;
+                }
+            }
+        }
+    }
+    else if(order == 0)
+    {
+        for(int i = 0; i < len - 1; i++)
+        {
+            for(int j = i + 1; j < len; j++)
+            {
+                if(arrayEmployee[i].sector < arrayEmployee[j].sector)  // Ordenar en forma inversa alfabeticamente por apellido && sector
+                {
+                    aux = arrayEmployee[i];
+                    arrayEmployee[i] = arrayEmployee[j];
+                    arrayEmployee[j] = aux;
+                }
+                else if (arrayEMployee[i].sector == arrayEmployee[j].sector && strcmp(arrayEmployee[i].lastName, arrayEmployee[j].lastName) < 0)
+                {
+                    aux = arrayEmployee[i];
+                    arrayEmployee[i] = arrayEmployee[j];
+                    arrayEmployee[j] = aux;
+                }
+            }
+        }
+    }
+
+    return 0;
 }
 
 
