@@ -12,3 +12,4 @@ int addEmployee(Employee lista[],int len,int id,char name[],char lastName[],floa
 int printEmployess(Employee arrayEmployee[],int len);
 int findEmployeebyId(Employee lista[],int len,int id);
 int sortEmployees(Employee lista[], int len, int order);
+void showEmployee(Employee emp);

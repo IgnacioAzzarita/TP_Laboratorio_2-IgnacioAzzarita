@@ -1,5 +1,5 @@
 #include "ArrayEmployee.h"
-#include <stdio.h>
+ #include <stdio.h>
 #include <stdlib.h>
 int initEmployees(Employee lista[] ,int len)
 {
@@ -39,17 +39,12 @@ int printEmployess(Employee arrayEmployee[],int len)
 
     if(len>0 && len <=1000)
     {
-        printf("ID Nombre  Apellido  Salario  Sector \n");
+         printf("  ID                Nombre             Apellido          Salario     Sector \n");
          for(int i = 0; i < len; i++)
         {
             if(arrayEmployee[i].isEmpty != 1)
             {
-                printf(" %d %s %s %4.2f %d \n",
-           arrayEmployee[i].id,
-           arrayEmployee[i].name,
-           arrayEmployee[i].lastName,
-           arrayEmployee[i].salary,
-           arrayEmployee[i].sector);
+             showEmployee(arrayEmployee[i]);
             }
         }
         printf("\n\n");
@@ -173,4 +168,15 @@ int removeEmployee(Employee* list, int len)
     }
 
     return error;
+}
+void showEmployee(Employee emp)
+{
+
+    printf("%5d %20s %20s          %7.2f    %4d\n",
+           emp.id,
+           emp.name,
+           emp.lastName,
+           emp.salary,
+           emp.sector);
+
 }
