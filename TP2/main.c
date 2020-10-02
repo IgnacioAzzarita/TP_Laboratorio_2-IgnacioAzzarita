@@ -12,26 +12,26 @@ typedef struct
     int sector;
     int isEmpty;
 }Employee;
-int initEmployees(Employee* arrayEmployee ,int len);
-int addEmployee(Employee*arrayEmployee,int len,int id,char name[],char lastName[],float salary,int sector);
-int printEmployess(Employee*arrayEmployee,int len);
-int findEmployeebyId(Employee*arrayEmployee,int len,int id);
-int sortEmployees(Employee* arrayEmployee, int len, int order);
+int initEmployees(Employee lista[] ,int len);
+int addEmployee(Employee lista[],int len,int id,char name[],char lastName[],float salary,int sector);
+int printEmployess(Employee lista[],int len);
+int findEmployeebyId(Employee lista[],int len,int id);
+int sortEmployees(Employee lista[], int len, int order);
 int main()
 {
     Employee arrayEmployee[TAM];
 
     initEmployees(arrayEmployee,TAM);
     addEmployee(arrayEmployee,TAM,1,"Jose","Marmol",2564.8,2);
-    findEmployeebyId(arrayEmployee*,TAM,arrayEmployee.id);
+    findEmployeebyId(arrayEmployee,TAM,arrayEmployee.id);
     printEmployess(arrayEmployee,TAM);
 
     return 0;
 }
-int initEmployees(Employee*arrayEmployee ,int len)
+int initEmployees(Employee lista[] ,int len)
 {
     int i;
-    if(arrayEmployee != NULL && len > 0 && len <= 1000){
+    if(len > 0 && len <= 1000){
     for(i=0;i<len;i++)
     {
         Employee empleado={0,"","",0.0,0,1};
@@ -41,7 +41,7 @@ int initEmployees(Employee*arrayEmployee ,int len)
     }
     return -1;
 }
-int addEmployee(Employee* arrayEmployee,int len,int id,char name[],char lastName[],float salary,int sector)
+int addEmployee(Employee arrayEmployee,int len,int id,char name[],char lastName[],float salary,int sector)
 {
     int i;
     int nextId;
@@ -61,7 +61,7 @@ int addEmployee(Employee* arrayEmployee,int len,int id,char name[],char lastName
     }
     return -1;
 }
-int printEmployess(Employee*arrayEmployee,int len)
+int printEmployess(Employee lista[],int len)
 {
 
     if(len>0 && len <=1000)
@@ -84,14 +84,14 @@ int printEmployess(Employee*arrayEmployee,int len)
     }
     return -1;
 }
-int findEmployeebyId(Employee*arrayEmployee,int len, int id)
+int findEmployeebyId(Employee lista[],int len, int id)
 {
     int indexId = -1;
     if(len > 0 && len <= 1000)
     {
     for(int i = 0; i < len; i++)
     {
-      if(arrayEmployee[i].id == id && arrayEmployee[i].isEmpty == 0)
+      if(lista[i].id == id && lista[i].isEmpty == 0)
         {
                 indexId = i;
                 break;
@@ -100,9 +100,9 @@ int findEmployeebyId(Employee*arrayEmployee,int len, int id)
 }
     return indexId;
 }
-int sortEmployees(Employee* arrayEmployee, int len, int order)
+int sortEmployees(Employee lista[], int len, int order)
 {
-    if(arrayEmployee == NULL || len < 0 || len > 1000 || order < 0 || order > 1 )
+    if(len < 0 || len > 1000 || order < 0 || order > 1 )
     {
         return -1;
     }
@@ -114,11 +114,11 @@ int sortEmployees(Employee* arrayEmployee, int len, int order)
         {
             for(int j = i + 1; j < len; j++)
             {
-                if(arrayEmployee[i].sector > arrayEmployee[j].sector)  // Ordenar alfabeticamente por apellido && sector
+                if(lista[i].sector > lista[j].sector)  // Ordenar alfabeticamente por apellido && sector
                 {
-                    aux = arrayEmployee[i];
-                    arrayEmployee[i] = arrayEmployee[j];
-                    arrayEmployee[j] = aux;
+                    aux = lista[i];
+                    lista[i] = lista[j];
+                    lista[j] = aux;
                 }
                 else if (arrayEmployee[i].sector == arrayEmployee[j].sector && strcmp(arrayEmployee[i].lastName, arrayEmployee[j].lastName) > 0)
                 {
@@ -137,15 +137,15 @@ int sortEmployees(Employee* arrayEmployee, int len, int order)
             {
                 if(arrayEmployee[i].sector < arrayEmployee[j].sector)  // Ordenar en forma inversa alfabeticamente por apellido && sector
                 {
-                    aux = arrayEmployee[i];
-                    arrayEmployee[i] = arrayEmployee[j];
-                    arrayEmployee[j] = aux;
+                    aux = lista[i];
+                    lista[i] = lista[j];
+                    lista[j] = aux;
                 }
-                else if (arrayEMployee[i].sector == arrayEmployee[j].sector && strcmp(arrayEmployee[i].lastName, arrayEmployee[j].lastName) < 0)
+                else if (arrayEmployee[i].sector == arrayEmployee[j].sector && strcmp(arrayEmployee[i].lastName, arrayEmployee[j].lastName) < 0)
                 {
-                    aux = arrayEmployee[i];
-                    arrayEmployee[i] = arrayEmployee[j];
-                    arrayEmployee[j] = aux;
+                    aux = lista[i];
+                    lista[i] = lista[j];
+                    lista[j] = aux;
                 }
             }
         }
